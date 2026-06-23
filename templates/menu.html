@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan2Order</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>🍔 Scan2Order Restaurant</h1>
+
+<h1>Restaurant Menu</h1>gh
+
+{% for item in items %}
+<div>
+    <h3>{{ item.item_name }}</h3>
+    <p>₹{{ item.price }}</p>
+</div>
+{% endfor %}
+<div class="menu-container">
+
+    <div class="card">
+        <img src="{{ url_for('static', filename='images/burger.jpg') }}" width="150">
+        <h3>Burger</h3>
+        <p>₹120</p>
+        <button onclick="addToCart('Burger',120)">
+            Add To Cart
+        </button>
+    </div>
+
+    <div class="card">
+        <img src="{{ url_for('static', filename='images/pizza.jpg') }}" width="150">
+        <h3>Pizza</h3>
+        <p>₹250</p>
+        <button onclick="addToCart('Pizza',250)">
+            Add To Cart
+        </button>
+    </div>
+
+    <div class="card">
+        <img src="{{ url_for('static', filename='images/pasta.jpg') }}" width="150">
+        <h3>Pasta</h3>
+        <p>₹180</p>
+        <button onclick="addToCart('Pasta',180)">
+            Add To Cart
+        </button>
+    </div>
+
+</div>
+
+<a href="/cart">
+    <button>🛒 View Cart</button>
+</a>
+
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+
+</body>
+</html>

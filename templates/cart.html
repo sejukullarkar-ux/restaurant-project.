@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>Your Cart</h1>
+
+<div id="cart-items"></div>
+
+<button onclick="placeOrder()">
+Place Order
+</button>
+
+<script>
+
+let cart =
+JSON.parse(localStorage.getItem("cart"))
+|| [];
+
+let output = "";
+let total = 0;
+
+cart.forEach(item => {
+
+    let subtotal =
+    item.price * item.quantity;
+
+    total += subtotal;
+
+    output += `
+    <div class="card">
+        <h3>${item.name}</h3>
+        <p>Price: ₹${item.price}</p>
+        <p>Qty: ${item.quantity}</p>
+        <p>Subtotal: ₹${subtotal}</p>
+    </div>
+    `;
+});
+
+output += `<h2>Total = ₹${total}</h2>`;
+
+document.getElementById("cart-items")
+.innerHTML = output;
+
+function placeOrder(){
+    alert("Order Placed Successfully");
+    localStorage.removeItem("cart");
+    window.location.href="/confirmation";
+}
+
+</script>
+
+</body>
+</html>
